@@ -11,11 +11,12 @@ const gpio_set = (gpio,value,callback) => {
 }
 
 module.exports.trigger = (thing, callback) => {
-    GPIO.setup(7, gpio.DIR_IN, readInput);
+    gpio.setup(17, GPIO.DIR_OUT, write);
  
-    function readInput() {
-        GPIO.read(17, function(err, value) {
-            console.log('The value is ' + value);
+    function write() {
+        gpio.write(17, true, function(err) {
+            if (err) throw err;
+            console.log('Written to pin');
         });
     }
     // const gpio = 17
