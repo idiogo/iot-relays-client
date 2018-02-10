@@ -1,7 +1,6 @@
 'use strict'
 
 const io = require('socket.io-client');
-const slack = require('./slack')
 const Thing = require('./thing')
 const socket = io(process.env.SOCKET);
 
