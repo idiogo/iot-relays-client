@@ -12,7 +12,7 @@ const gpio_set = (gpio,value,callback) => {
 
 module.exports.trigger = (thing, callback) => {
     const gpio = 17
-    GPIO.setup(gpio, gpio.DIR_OUT, ()=>{
+    GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
         gpio_set(gpio,'LOW',()=>{
             setTimeout(() => {
                 gpio_set(gpio,'HIGH',()=>{
@@ -30,7 +30,7 @@ module.exports.trigger = (thing, callback) => {
 
 module.exports.on = (thing, callback) => {
     const gpio = 17
-    GPIO.setup(gpio, gpio.DIR_OUT, ()=>{
+    GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
         gpio_set(gpio,'HIGH',()=>{
             callback(true)
         })
@@ -39,7 +39,7 @@ module.exports.on = (thing, callback) => {
 
 module.exports.off = (thing, callback) => {
     const gpio = 17
-    GPIO.setup(gpio, gpio.DIR_OUT, ()=>{
+    GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
         gpio_set(gpio,'LOW',()=>{
             callback(true)
         })
