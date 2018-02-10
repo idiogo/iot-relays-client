@@ -2,12 +2,12 @@
 
 var GPIO = require('gpio');
  
-const gpio_set = (gpio,value,callback) => {
-    var gpio17 = gpio.export(gpio, {
+const gpio_set = (gpio_number,value,callback) => {
+    var gpio = GPIO.export(gpio_number, {
        direction: "out",
        ready: function() {
-           gpio17.set(function() {
-               console.log(gpio17.value);    // should log 1 
+           gpio.set(value, function() {
+               console.log(gpio.value);
                callback()
            });
        }
@@ -15,12 +15,12 @@ const gpio_set = (gpio,value,callback) => {
 }
 
 module.exports.trigger = (thing, callback) => {
-    const gpio = 17
-    gpio_set(gpio,'LOW',()=>{
+    const gpio_number = 17
+    gpio_set(gpio_number,0,()=>{
         setTimeout(() => {
-            gpio_set(gpio,'HIGH',()=>{
+            gpio_set(gpio_number,1,()=>{
                 setTimeout(() => {
-                    gpio_set(gpio,'LOW',()=>{
+                    gpio_set(gpio_number,0,()=>{
                         callback(true)
                     })
                 },400)
@@ -30,19 +30,15 @@ module.exports.trigger = (thing, callback) => {
 }
 
 module.exports.on = (thing, callback) => {
-    const gpio = 17
-    GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
-        gpio_set(gpio,'HIGH',()=>{
-            callback(true)
-        })
+    const gpio_number = 17
+    gpio_set(gpio_number,1,()=>{
+        callback(true)
     })
 }
 
 module.exports.off = (thing, callback) => {
-    const gpio = 17
-    GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
-        gpio_set(gpio,'LOW',()=>{
-            callback(true)
-        })
+    const gpio_number = 17
+    gpio_set(gpio_number,0,()=>{
+        callback(true)
     })
 }
