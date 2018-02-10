@@ -1,39 +1,32 @@
 'use strict'
 
-var GPIO = require('rpi-gpio');
+var GPIO = require('gpio');
  
 const gpio_set = (gpio,value,callback) => {
-    GPIO.write(17, true, function(err) {
-        if (err) throw err;
-        console.log(gpio+'='+value)
-        callback()
-    });    
+    var gpio17 = gpio.export(gpio, {
+       direction: "out",
+       ready: function() {
+           gpio17.set(function() {
+               console.log(gpio17.value);    // should log 1 
+               callback()
+           });
+       }
+    });   
 }
 
 module.exports.trigger = (thing, callback) => {
-    GPIO.setup(17, GPIO.DIR_OUT, write);
- 
-    function write() {
-        GPIO.write(17, true, function(err) {
-            if (err) throw err;
-            console.log('Written to pin');
-        });
-    }
-    // const gpio = 17
-    // GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
-    //     gpio_set(gpio,'LOW',()=>{
-    //         setTimeout(() => {
-    //             gpio_set(gpio,'HIGH',()=>{
-    //                 setTimeout(() => {
-    //                     gpio_set(gpio,'LOW',()=>{
-    //                         callback(true)
-    //                     })
-    //                 },400)
-    //             })
-    //         },400)
-    //     })
-    // })
-    
+    const gpio = 17
+    gpio_set(gpio,'LOW',()=>{
+        setTimeout(() => {
+            gpio_set(gpio,'HIGH',()=>{
+                setTimeout(() => {
+                    gpio_set(gpio,'LOW',()=>{
+                        callback(true)
+                    })
+                },400)
+            })
+        },400)
+    })
 }
 
 module.exports.on = (thing, callback) => {
