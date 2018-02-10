@@ -11,26 +11,33 @@ const gpio_set = (gpio,value,callback) => {
 }
 
 module.exports.trigger = (thing, callback) => {
-    const gpio = 17
-    GPIO.setup(gpio, ()=>{
-        gpio_set(gpio,'LOW',()=>{
-            setTimeout(() => {
-                gpio_set(gpio,'HIGH',()=>{
-                    setTimeout(() => {
-                        gpio_set(gpio,'LOW',()=>{
-                            callback(true)
-                        })
-                    },400)
-                })
-            },400)
-        })
-    })
+    GPIO.setup(7, gpio.DIR_IN, readInput);
+ 
+    function readInput() {
+        GPIO.read(17, function(err, value) {
+            console.log('The value is ' + value);
+        });
+    }
+    // const gpio = 17
+    // GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
+    //     gpio_set(gpio,'LOW',()=>{
+    //         setTimeout(() => {
+    //             gpio_set(gpio,'HIGH',()=>{
+    //                 setTimeout(() => {
+    //                     gpio_set(gpio,'LOW',()=>{
+    //                         callback(true)
+    //                     })
+    //                 },400)
+    //             })
+    //         },400)
+    //     })
+    // })
     
 }
 
 module.exports.on = (thing, callback) => {
     const gpio = 17
-    GPIO.setup(gpio, ()=>{
+    GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
         gpio_set(gpio,'HIGH',()=>{
             callback(true)
         })
@@ -39,7 +46,7 @@ module.exports.on = (thing, callback) => {
 
 module.exports.off = (thing, callback) => {
     const gpio = 17
-    GPIO.setup(gpio, ()=>{
+    GPIO.setup(gpio, GPIO.DIR_OUT, ()=>{
         gpio_set(gpio,'LOW',()=>{
             callback(true)
         })
