@@ -23,9 +23,9 @@ module.exports.trigger = (thing, callback) => {
                     gpio_set(gpio_number,0,()=>{
                         callback(true)
                     })
-                },400)
+                },600)
             })
-        },400)
+        },600)
     })
 }
 
