@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "SETUP={\\\"name\\\":\\\"linden-gardens\\\",\\\"things\\\":[\\\"portaria-externa\\\",\\\"portaria-interna\\\",\\\"garagem-terrereo\\\"]} SOCKET=http://localhost:1337 nodemon app.js",
-    "prod": "SETUP={\\\"name\\\":\\\"linden-gardens\\\",\\\"things\\\":[\\\"portaria-externa\\\",\\\"portaria-interna\\\",\\\"garagem-terrereo\\\"]} SOCKET=https://iot-relays-server.herokuapp.com node app.js"
+    "dev": "SETUP={\\\"name\\\":\\\"linden-gardens\\\",\\\"things\\\":[{\\\"name\\\":\\\"portaria-externa\\\",\\\"port_number\\\":\\\"19\\\"},{\\\"name\\\":\\\"portaria-interna\\\",\\\"port_number\\\":\\\"17\\\"},{\\\"name\\\":\\\"garagem-terreo\\\",\\\"port_number\\\":\\\"18\\\"},{\\\"name\\\":\\\"garagem-subsolo\\\",\\\"port_number\\\":\\\"20\\\"}]} SOCKET=http://localhost:1337 nodemon app.js",
+    "prod": "SETUP={\\\"name\\\":\\\"linden-gardens\\\",\\\"things\\\":[{\\\"name\\\":\\\"portaria-externa\\\",\\\"port_number\\\":\\\"19\\\"},{\\\"name\\\":\\\"portaria-interna\\\",\\\"port_number\\\":\\\"17\\\"},{\\\"name\\\":\\\"garagem-terreo\\\",\\\"port_number\\\":\\\"18\\\"},{\\\"name\\\":\\\"garagem-subsolo\\\",\\\"port_number\\\":\\\"20\\\"}]} SOCKET=https://iot-relays-server.herokuapp.com node app.js"
   },
   "author": "@idiogo",
   "license": "ISC",

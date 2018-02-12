@@ -26,5 +26,5 @@ socket.on('hardware-off', function(data) {
     })
 })
 
-//SETUP={\"name\":\"linden-gardens\",\"things\":[\"portaria-externa\",\"portaria-interna\",\"garagem-terrereo\"]} nodemon app.js 
+//SETUP={\"name\":\"linden-gardens\",\"things\":[{\"name\":\"portaria-externa\",\"port_numer\":\"19\"},{\"name\":\"portaria-interna\",\"port_numer\":\"17\"},{\"name\":\"garagem-terreo\",\"port_numer\":\"18\"},{\"name\":\"garagem-subsolo\",\"port_numer\":\"20\"}]} nodemon app.js 
 
